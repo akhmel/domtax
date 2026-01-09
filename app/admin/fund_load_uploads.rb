@@ -13,20 +13,10 @@ ActiveAdmin.register_page "Fund Load Uploads" do
     end
 
     # Show processed output.txt contents if available
-    panel "Processed output.txt" do
-      output_dir = Rails.root.join("tmp", "fund_loads")
-      output_candidates = Dir.glob(output_dir.join("output*.txt")).sort_by { |p| File.mtime(p) } rescue []
-      if output_candidates.any?
-        latest_output_path = output_candidates.last
-        div do
-          para "Showing latest output file: #{File.basename(latest_output_path)}"
-        end
-        pre do
-          # Display raw contents so formatting is preserved exactly as generated
-          File.read(latest_output_path)
-        end
-      else
-        para "No output.txt found yet. Upload and process an input file to generate output."
+    panel "Processed " do
+      pre do
+        results = FundLoadRestrictions::Submission.submission_with_velocity_limit_results.limit(100).to_a
+        JSON.pretty_generate(results.map { |r| r.attributes.slice("id", "ext_customer_id", "accepted", "decline_reason") })
       end
     end
   end
