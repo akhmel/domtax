@@ -21,10 +21,7 @@ RSpec.describe FundLoadRestrictions::ProcessInputFile, type: :service do
   end
 
   it "persists upload, computes chunks, and enqueues chunk jobs" do
-    result = described_class.new(File.open(input_path), chunk_size: 100).call
-    puts '-------------------------------- result --------------------------------'
-    pp result
-    puts '-------------------------------- result --------------------------------'
+    expect { described_class.new(File.open(input_path), chunk_size: 100).call }.to change(FundLoadRestrictions::Submission, :count).by(2003)
   end
 end
 

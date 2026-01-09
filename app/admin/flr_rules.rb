@@ -1,4 +1,4 @@
-ActiveAdmin.register FundLoadRestrictions::VelocityLimitRule, as: "FLR Rule" do
+ActiveAdmin.register FundLoadRestrictions::VelocityLimitRule, as: "Rules" do
   permit_params :name, :rule_type, :enabled, :config
 
   form do |f|

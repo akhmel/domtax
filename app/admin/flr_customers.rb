@@ -1,4 +1,4 @@
-ActiveAdmin.register FundLoadRestrictions::Customer, as: "FLR Customer" do
+ActiveAdmin.register FundLoadRestrictions::Customer, as: "Customers" do
   permit_params :ext_customer_id
 
   # Filters

@@ -1,4 +1,4 @@
-ActiveAdmin.register FundLoadRestrictions::Submission, as: "FLR Submission" do
+ActiveAdmin.register FundLoadRestrictions::Submission, as: "Submissions" do
   actions :index, :show
 
   # Use concrete columns that exist on the model/table

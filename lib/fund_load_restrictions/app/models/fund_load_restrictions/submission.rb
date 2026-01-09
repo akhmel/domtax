@@ -32,6 +32,21 @@ module FundLoadRestrictions
     def self.ransackable_attributes(_auth_object = nil)
       %w[id customer_id load_amount_cents currency load_datetime created_at updated_at]
     end
+
+    #get submission with submission velocity limit results,
+    #extract id, ext_customer_id, accepted, decline_reason 
+    #use class method
+    def self.submission_with_velocity_limit_results
+      joins(:submission_velocity_limit_results, :customer)
+        .select(
+          [
+            "#{table_name}.uuid AS id",
+            "#{FundLoadRestrictions::Customer.table_name}.ext_customer_id",
+            "#{FundLoadRestrictions::SubmissionVelocityLimitResult.table_name}.accepted",
+            "#{FundLoadRestrictions::SubmissionVelocityLimitResult.table_name}.decline_reason"
+          ].join(", ")
+        )
+    end
   end
 end
 

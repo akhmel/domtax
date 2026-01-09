@@ -1,4 +1,4 @@
-ActiveAdmin.register FundLoadRestrictions::Sanction, as: "FLR Sanction" do
+ActiveAdmin.register FundLoadRestrictions::Sanction, as: "Sanctions" do
   permit_params :customer_id, :reason, :active
 
   index do

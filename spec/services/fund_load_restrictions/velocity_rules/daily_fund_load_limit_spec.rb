@@ -29,7 +29,7 @@ RSpec.describe FundLoadRestrictions::VelocityRules::DailyFundLoadLimit do
     result = rule.evaluate(customer_payload: payload)
     accepted, reason = result.is_a?(Array) ? result : [result, nil]
     expect(accepted).to be(false)
-    expect(reason).to eq("daily_amount_limit")
+    expect(reason).to eq("daily amount limit exceeded, available amount for today is 1 cents")
   end
 
   it "accepts when today's spent + load equals the limit" do

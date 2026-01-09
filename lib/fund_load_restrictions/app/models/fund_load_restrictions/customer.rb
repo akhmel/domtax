@@ -20,6 +20,11 @@ module FundLoadRestrictions
     def self.ransackable_attributes(_auth_object = nil)
       %w[id ext_customer_id created_at updated_at]
     end
+
+    def submissions_with_velocity_limit_results
+      submissions.joins(:submission_velocity_limit_results)
+      .select("submissions.id, submissions.ext_customer_id, submission_velocity_limit_results.accepted, submission_velocity_limit_results.decline_reason")
+    end
   end
 end
 
